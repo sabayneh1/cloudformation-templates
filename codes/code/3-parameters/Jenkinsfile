@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define variables to store the repository URL and file path
         GIT_REPO = 'https://github.com/sabayneh1/cloudformation-templates.git'
-        CLOUDFORMATION_FILE_PATH = 'cloudformation-templates/codes/code/3-parameters/1-ssm-parameters-hands-on.yaml'
+        CLOUDFORMATION_FILE_PATH = 'codes/code/3-parameters/1-ssm-parameters-hands-on.yaml'
         STACK_NAME = 'MyCloudFormationStackParamters' // Name of the CloudFormation stack
         REGION = 'ca-central-1' // Define AWS region to deploy
     }
