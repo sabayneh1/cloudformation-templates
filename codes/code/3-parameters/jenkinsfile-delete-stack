@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    environment {
+        STACK_NAME = 'yCloudFormationStackParamters'  // Name of the CloudFormation stack to delete
+        REGION = 'ca-central-1'  // AWS region
+    }
+
+    stages {
+        stage('Delete CloudFormation Stack') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-credentials'  // Jenkins AWS credentials
+                ]]) {
+                    sh '''
+                        # Delete the CloudFormation stack
+                        aws cloudformation delete-stack \
+                            --stack-name ${STACK_NAME} \
+                            --region ${REGION}
+
+                        # Optionally, wait for the stack to be deleted (synchronous)
+                        aws cloudformation wait stack-delete-complete \
+                            --stack-name ${STACK_NAME} \
+                            --region ${REGION}
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'CloudFormation Stack deletion finished'
+        }
+    }
+}
