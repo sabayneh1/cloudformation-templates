@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        STACK_NAME = 'yCloudFormationStackParamters'  // Name of the CloudFormation stack to delete
+        STACK_NAME = 'MyCloudFormationStackParamters'  // Name of the CloudFormation stack to delete
         REGION = 'ca-central-1'  // AWS region
     }
 
